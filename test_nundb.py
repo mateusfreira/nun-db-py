@@ -17,6 +17,7 @@ async def nundb():
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_get_value_before_setting(nundb):
     """Test: Retrieve a value before setting it."""
     value = await nundb.get("before")
@@ -25,6 +26,7 @@ async def test_get_value_before_setting(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_get_value_after_setting(nundb):
     """Test: Retrieve a value after setting it."""
     await nundb.set("after", "ok")
@@ -33,6 +35,7 @@ async def test_get_value_after_setting(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_watching_value(nundb):
     """Test: Watch a value in real-time."""
     cache = []
@@ -52,6 +55,7 @@ async def test_watching_value(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_increment_value(nundb):
     """Test: Increment a value."""
     await nundb.set("age", "17")
@@ -61,6 +65,7 @@ async def test_increment_value(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_remove_watcher(nundb):
     """Test: Remove a watcher."""
     cache = []
@@ -80,6 +85,7 @@ async def test_remove_watcher(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_get_keys(nundb):
     """Test: Retrieve all keys."""
     await nundb.set("test", "123")
@@ -103,6 +109,7 @@ async def test_get_keys(nundb):
 
 
 @pytest.mark.asyncio
+@pytest.mark.timeout(10)
 async def test_get_all_databases(nundb):
     """Test: Retrieve all databases."""
     all_databases = await nundb.get_all_databases()

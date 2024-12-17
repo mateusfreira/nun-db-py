@@ -26,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-asyncio websockets
+          pip install pytest pytest-asyncio websockets pytest-timeout
 
       - name: Run NunDB Docker container
         run: |
@@ -36,11 +36,11 @@ jobs:
                         --mount type=bind,source="/tmp",target=/data \
                         -p 3013:3013 -p 3012:3012 -p 3014:3014 \
                         --name nun-test mateusfreira/nun-db
-          sleep 3  # Aguarda o container iniciar
+          sleep 5 
 
       - name: Run tests with pytest
         run: |
-          pytest test_nundb.py --asyncio-mode=auto
+          pytest test_nundb.py
 
       - name: Stop Docker container
         if: always()
