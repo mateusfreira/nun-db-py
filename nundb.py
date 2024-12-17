@@ -408,35 +408,3 @@ class NunDB:
         instance = cls(url, name, pwd)
         await instance.connect(url, name, pwd)
         return instance
-
-async def main():
-    nundb = NunDB("ws://localhost:3012", "user-name", "user-pwd")
-    await nundb.connect(nundb.url, nundb.name, nundb.pwd)
-
-    await nundb.use_db("aware", "aware")
-    # nundb.show_logs(True)
-
-    await nundb.set("test", "123")
-    await nundb.set("km", "1")
-    await nundb.set("after", "1")
-    await nundb.set("remove", "1")
-
-    await asyncio.sleep(0.5)
-    all_keys = await nundb.all_keys()
-    keys_containing = await nundb.keys_contains("es")
-    print(all_keys)
-    keys_starting_with = await nundb.keys_starting_with("t")
-    keys_ending_with = await nundb.keys_ending_with("st")
-
-    print(keys_containing)
-    print(keys_starting_with)
-    print(keys_ending_with)
-
-    expected_keys = ["$$token", "$connections", "after", "km", "remove", "test"]
-    # assert all(key in all_keys for key in expected_keys)
-    # assert keys_containing == ["test\n"]
-    # assert keys_starting_with == ["test\n"]
-    # assert keys_ending_with == ["test\n"]
-    await nundb.close()
-
-asyncio.run(main())
