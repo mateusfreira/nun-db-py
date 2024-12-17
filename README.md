@@ -83,3 +83,40 @@ Example:
 ```python
 await nun_db.add_watch("some_key", lambda data: print(f"Key {data} changed"))
 ```
+
+## Advanced Usage
+
+- **get_all_databases()**: Retrieve all databases.
+- **keys_starting_with(prefix: str)**: Retrieve all keys starting with a given prefix.
+- **keys_ending_with(suffix: str)**: Retrieve all keys ending with a given suffix.
+- **keys_contains(supposed_text: str)**: Retrieve all keys that contain a specific substring.
+
+## Error Handling
+
+The client raises exceptions if commands fail. You should handle errors accordingly by wrapping them in try-except blocks.
+
+## Logging
+
+To enable logging for commands and responses:
+
+```python
+nun_db.show_logs(True)
+```
+
+## Closing the Connection
+
+To close the WebSocket connection gracefully, use:
+
+```python
+await nun_db.close()
+```
+
+Dependencies
+
+    asyncio
+    websockets
+    re
+
+License
+
+MIT License. See LICENSE for more details.
