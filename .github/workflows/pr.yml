@@ -29,19 +29,6 @@ jobs:
           pip install pytest pytest-asyncio websockets pytest-timeout
 
       - name: Run NunDB Docker container
-        run: |
-          docker run -d --env NUN_USER=user-name \
-                        --env NUN_PWD=user-pwd \
-                        --env NUN_DBS_DIR="/data" \
-                        --mount type=bind,source="/tmp",target=/data \
-                        -p 3013:3013 -p 3012:3012 -p 3014:3014 \
-                        --name nun-test mateusfreira/nun-db
-          sleep 5 
-
-      - name: Run tests with pytest
-        run: |
-          pytest test_nundb.py
-
-      - name: Stop Docker container
-        if: always()
-        run: docker stop nun-test
+        run: docker run -d --env NUN_USER=user-name --env NUN_PWD=user-pwd --env NUN_DBS_DIR="/data" --mount type=bind,source="/tmp",target=/data -it --rm -p 3013:3013 -p 3012:3012 -p 3014:3014 --name nun-test mateusfreira/nun-db
+      - run: sleep 2
+      - run: pytest
