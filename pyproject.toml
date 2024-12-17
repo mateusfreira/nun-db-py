@@ -2,7 +2,7 @@
 name = "nun-db-py"
 version = "0.1.0"
 description = "A fan-made Python client for interacting with NunDB, a NoSQL database that supports real-time data synchronization and flexible data manipulation. This library allows you to connect to a NunDB instance, create databases, set and get values, watch data in real-time, and manage users and permissions."
-authors = ["Alex eewnshit@gmail.com"]
+authors = ["Alex <eewnshit@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/eewnshit/nun-db-py"
@@ -14,9 +14,14 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+packages = [
+    {include = "nundb.py"},
+    {include = "data_types/pending.py"},
+    {include = "handlers/response.py"},
+]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
 websockets = "^14.1"
 pytest = "^8.3.4"
 pytest-asyncio = "^0.25.0"
