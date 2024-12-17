@@ -3,7 +3,7 @@ import pytest
 import pytest_asyncio
 from nundb import NunDB
 
-@pytest_asyncio.fixture
+@pytest_asyncio.fixture(scope="function")
 async def nundb():
     """Fixture to initialize the NunDB client."""
     client = NunDB("ws://localhost:3012", "user-name", "user-pwd")
