@@ -24,7 +24,7 @@ pip install nun-db-py
 
 ```python
 import asyncio
-from nun_db_client import NunDB
+from nundb import NunDB
 
 async def main():
     # Connect to the NunDB server
