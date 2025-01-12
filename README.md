@@ -32,12 +32,13 @@ async def main():
     username = "your_username"
     password = "your_password"
     
-    nun_db, _ = await NunDB.create(url, username, password)
+    nun_db = await NunDB.create(url, username, password)
 
     # Create a new database
     db_name = "test_db"
     db_token = "your_db_token"
     await nun_db.create_db(db_name, db_token)
+    await nun_db.use_db(db_name, db_token)
 
     # Set a key-value pair
     await nun_db.set("some_key", "some_value")
